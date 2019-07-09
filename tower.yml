@@ -1,0 +1,19 @@
+---
+- name: When tag with AND/OR
+  hosts: all
+  tasks:
+   - name: install the tree package
+     yum:
+      name: tree
+      state: present
+     when: ansible_hostname == "node1" and ansible_default_ipv4.address == "192.168.206.22"
+     tags:
+      - tree
+   - name: install the vsftpd package
+     yum:
+      name: vsftpd
+      state: present
+     tags:
+      - filepackage
+...
+
